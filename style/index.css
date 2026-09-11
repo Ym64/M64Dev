@@ -385,6 +385,7 @@ space {
 
 .link:hover {
   color: #fff;
+  cursor: pointer;
 }
 
 footer {
