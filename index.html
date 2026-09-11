@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <header>
+  <head>
     <title>./m64.jar</title>
 
     <!-- Heading thingies -->
@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Style -->
-    <link rel="stylesheet" href="style/index.css?ver=8" />
+    <link rel="stylesheet" href="style/index.css" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,10 +45,7 @@
 
     <!-- Load Cloudflare Turnstile for human verification -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-    <!-- Load own script -->
-    <script defer src="app.js"></script>
-  </header>
+  </head>
 
   <body>
     <nav id="navbar">
@@ -248,68 +245,7 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const elements = document.querySelectorAll(".scramble");
-        elements.forEach((element) => scrambleText(element, 800));
 
-        function scrambleText(element, duration) {
-          const originalHtml = element.innerHTML; // Store original HTML to restore later
-          const textNodes = getTextNodes(element);
-
-          let iteration = 0;
-          const chars =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-          function update() {
-            let scrambledHtml = originalHtml;
-
-            // Scramble text nodes
-            textNodes.forEach((node) => {
-              const originalText = node.textContent;
-              const scrambledText = originalText
-                .split("")
-                .map((char, i) => {
-                  if (char === " ") return char; // Preserve spaces
-                  if (iteration >= (duration / 60 / originalText.length) * i)
-                    return char; // Reveal original characters progressively
-                  return chars[Math.floor(Math.random() * chars.length)];
-                })
-                .join("");
-
-              scrambledHtml = scrambledHtml.replace(
-                originalText,
-                scrambledText,
-              ); // Update only the text part
-            });
-
-            element.innerHTML = scrambledHtml; // Apply scrambled text
-
-            iteration++;
-
-            if (iteration < duration / 60) {
-              setTimeout(update, 60); // Update every 60ms for smoother animation
-            } else {
-              element.innerHTML = originalHtml; // Restore original HTML
-            }
-          }
-
-          update();
-        }
-
-        // Helper function to get all text nodes within an element
-        function getTextNodes(element) {
-          const textNodes = [];
-          function walk(node) {
-            if (node.nodeType === Node.TEXT_NODE) {
-              textNodes.push(node);
-            } else if (node.nodeType === Node.ELEMENT_NODE) {
-              node.childNodes.forEach(walk);
-            }
-          }
-          walk(element);
-          return textNodes;
-        }
-      });
     </script>
 
     <footer>
@@ -324,6 +260,8 @@
         <span id="year"></span>
       </p>
     </footer>
-    <script defer src="script/index.js"></script>
+
+    <!-- Load own script after loading HTML -->
+    <script defer type="module" src="/script/index.js"></script>
   </body>
 </html>

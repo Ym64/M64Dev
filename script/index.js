@@ -1,5 +1,4 @@
-const api_url = "https://status-api.m64.dev";
-// const api_url = "http://0.0.0.0:8080";
+const api_url = import.meta.env.VITE_API_URL_STATUS;
 
 const outputElement = document.getElementById("online-status");
 let tooltipElement = document.getElementById("online-tooltip");
@@ -180,3 +179,78 @@ function closeContactModal(button) {
     modal.style.visibility = "hidden";
     button.style.transition = "0s";
 }
+
+
+
+/*
+ * Scramble animation on load
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".scramble");
+    elements.forEach((element) => scrambleText(element, 800));
+
+    function scrambleText(element, duration) {
+        const originalHtml = element.innerHTML; // Store original HTML to restore later
+        const textNodes = getTextNodes(element);
+
+        let iteration = 0;
+        const chars =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        function update() {
+            let scrambledHtml = originalHtml;
+
+            // Scramble text nodes
+            textNodes.forEach((node) => {
+                const originalText = node.textContent;
+                const scrambledText = originalText
+                    .split("")
+                    .map((char, i) => {
+                        if (char === " ") return char; // Preserve spaces
+                        if (iteration >= (duration / 60 / originalText.length) * i)
+                            return char; // Reveal original characters progressively
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join("");
+
+                scrambledHtml = scrambledHtml.replace(
+                    originalText,
+                    scrambledText,
+                );
+            });
+
+            element.innerHTML = scrambledHtml;
+
+            iteration++;
+
+            if (iteration < duration / 60) {
+                setTimeout(update, 60);
+            } else {
+                element.innerHTML = originalHtml;
+            }
+        }
+
+        update();
+    }
+
+    // Helper function to get all text nodes within an element
+    function getTextNodes(element) {
+        const textNodes = [];
+
+        function walk(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                textNodes.push(node);
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                node.childNodes.forEach(walk);
+            }
+        }
+
+        walk(element);
+        return textNodes;
+    }
+});
+
+window.scrollToElement = scrollToElement;
+window.copyEmail = copyEmail;
+window.closeContactModal = closeContactModal;
+window.scrambleText = scrambleText;
