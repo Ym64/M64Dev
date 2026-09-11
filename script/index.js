@@ -1,4 +1,5 @@
-const api_url = import.meta.env.VITE_API_URL_STATUS;
+const apiUrlStatus = import.meta.env.VITE_API_URL_STATUS;
+const apiUrlContact = import.meta.env.VITE_API_URL_CONTACT;
 
 const outputElement = document.getElementById("online-status");
 let tooltipElement = document.getElementById("online-tooltip");
@@ -10,9 +11,7 @@ window.setTimeout(fetchOnlineStatus, 2000); // Show first after 2 seconds
 window.setInterval(fetchOnlineStatus, 10000); // Update status every 10 seconds
 
 function fetchOnlineStatus() {
-  const apiUrl = `${api_url}/status/get`;
-
-  fetch(apiUrl)
+    fetch(apiUrlStatus)
     .then((response) => {
       if (!response.ok) {
         outputElement.classList.remove("offline", "online", "dnd", "idle");
@@ -128,7 +127,7 @@ document.getElementById("contact-form").addEventListener("submit", async (event)
 
     try {
         contactSubmit.innerText = "Sending..."
-        const response = await fetch(`${api_url}/contact/webhook`, {
+        const response = await fetch(apiUrlContact, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
