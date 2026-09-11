@@ -1,5 +1,5 @@
-//const api_url = "https://status-api.m64.dev";
-const api_url = "http://0.0.0.0:8080";
+const api_url = "https://status-api.m64.dev";
+// const api_url = "http://0.0.0.0:8080";
 
 const outputElement = document.getElementById("online-status");
 let tooltipElement = document.getElementById("online-tooltip");
