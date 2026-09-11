@@ -191,6 +191,23 @@ button.copied:hover {
   background-color: rgba(255 255 255 / 0.05);
 }
 
+/*
+ * Projects
+ */
+.project-card {
+  display: flex;
+  flex-direction: row;
+  flex: 1 5;
+}
+
+.project-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 6px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
 .mail-container {
   display: flex;
   gap: 10px;

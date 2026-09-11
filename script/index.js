@@ -1,4 +1,5 @@
-const api_url = "https://status-api.m64.dev";
+//const api_url = "https://status-api.m64.dev";
+const api_url = "http://0.0.0.0:8080";
 
 const outputElement = document.getElementById("online-status");
 let tooltipElement = document.getElementById("online-tooltip");
@@ -102,17 +103,21 @@ function setRemainingChars(element, spanId, maxChars) {
 document.getElementById("contact-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     const form = event.target;
+    const turnstileToken = document.querySelector(
+        '[name="cf-turnstile-response"]'
+    )?.value;
 
     const data = {
         name: form.name.value,
         email: form.email.value,
         discord: form.discord.value || null,
-        message: form.message.value
+        message: form.message.value,
+        turnstileToken
     };
 
     console.log(data);
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort, 5000);
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     const contactForm = document.getElementById("contact-form");
     const contactSubmit = document.getElementById("contact-submit");
