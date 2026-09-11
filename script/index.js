@@ -1,5 +1,5 @@
-const apiUrlStatus = import.meta.env.VITE_API_URL_STATUS;
-const apiUrlContact = import.meta.env.VITE_API_URL_CONTACT;
+const apiUrlStatus = "https://status-api.m64.dev/status/get";
+const apiUrlContact = "https://status-api.m64.dev/contact/webhook";
 
 const outputElement = document.getElementById("online-status");
 let tooltipElement = document.getElementById("online-tooltip");
