@@ -8,5 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="lenis" level="application" />
+    <orderEntry type="library" name="blur" level="application" />
+    <orderEntry type="library" name="api" level="application" />
   </component>
 </module>

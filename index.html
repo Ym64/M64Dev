@@ -1,23 +1,22 @@
 <!doctype html>
 <html lang="en">
-  <header>
+  <head>
     <title>./m64.jar</title>
 
     <!-- Heading thingies -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Style -->
-    <link rel="stylesheet" href="style/index.css?ver=8" />
+    <link rel="stylesheet" href="style/index.css" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Cloudflare Turnstile early connection -->
+    <link rel="preconnect" href="https://challenges.cloudflare.com"/>
 
     <link
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
@@ -40,136 +39,259 @@
       rel="stylesheet"
     />
 
-    <script
-      src="https://kit.fontawesome.com/2ef25d02cd.js"
-      crossorigin="anonymous"
-    ></script>
-    <script defer src="app.js"></script>
-  </header>
+    <!-- Load fonts and smooth scroll -->
+    <script src="https://kit.fontawesome.com/2ef25d02cd.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+
+    <!-- Load Cloudflare Turnstile for human verification -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  </head>
 
   <body>
     <nav id="navbar">
-      <a class="link item active" href="/">
-        <i class="fa-solid fa-user nav-icon"></i>
-        <span>About</span>
+      <a class="link item" onclick="scrollToElement('home')">
+        <span class="scramble">Home</span>
       </a>
-      <a class="link item" href="/projects">
-        <i class="fa-solid fa-folder-open nav-icon"></i>
-        <span>Projects</span>
+      <a class="link item" onclick="scrollToElement('about')">
+        <span class="scramble">About</span>
       </a>
-      <a class="link item" href="/contact">
-        <i class="fas fa-envelope-open nav-icon"></i>
-        <span>Contact</span>
+      <a class="link item" onclick="scrollToElement('work')">
+        <span class="scramble">Work</span>
       </a>
-      <a
-        class="link item"
-        target="_blank"
-        href="https://bmc.link/M64DiamondStar"
-      >
-        <i class="fa-solid fa-gem nav-icon"></i>
-        <span>Donate</span>
+      <a class="link item" onclick="scrollToElement('contact')">
+        <span class="scramble">Contact</span>
       </a>
     </nav>
     <div id="wrapper">
       <div class="page-content">
         <div class="section-wrapper">
-          <section class="intro">
-            <h2 class="scramble" style="display: inline">
-              <i class="fa-solid fa-address-card"></i> M64's Portfolio
-            </h2>
-            <h5 style="display: inline">
-              <a
-                class="link"
-                target="_blank"
-                href="https://discord.com/invite/Scv9afJwXp"
-              >
-                <span class="scramble" id="online-status">Loading...</span>
-              </a>
-            </h5>
-            <p class="scramble">
-              Heya! Welcome to my portfolio! I'm M64, a Minecraft plugin nerd,
-              also known as a developer.
+          <section id="home" class="hero">
+            <div>
+              <h1 class="scramble" style="display: inline">Ymanu Geurts</h1>
+
+              <h5 style="display: inline">
+                <a class="link" target="_blank" href="https://discord.com/invite/Scv9afJwXp">
+                  <span class="scramble" id="online-status">Loading...</span>
+                </a>
+              </h5>
+
+              <p class="scramble">
+                Computer Science student at KU Leuven, Belgium
+              </p>
+
+              <hr />
+
+              <div style="text-align: center;">
+                <button class="primary" onclick="scrollToElement('work')"><span class="scramble">See My Work</span></button>
+                <button class="secondary" onclick="scrollToElement('contact')"><span class="scramble">Contact Me</span></button>
+              </div>
+            </div>
+          </section>
+
+          <section id="about">
+            <h2 class="scramble" style="display: inline">About Me</h2>
+
+            <p class=" scramble">
+              Hi, I'm Ymanu, known online as m64. I'm a Computer Science student at <a class="link" target="_blank" href="https://www.kuleuven.be/english/kuleuven/">KU Leuven</a> in Belgium.
+              Minecraft modding is what got me into programming, since then I've broadened my knowledge in back-end, web-development, databases and so much more.
+              <br><br>I don't know what the future holds for me, but I do know that I'm eager to learn more and more.
             </p>
+
+            <div class="skills-container">
+              <span><b>My Skills</b></span>
+
+              <div class="skills">
+                <div class="skill">
+                  <i class="devicon-kotlin-plain colored"></i>
+                  <span>Kotlin</span>
+                </div>
+                <div class="skill">
+                  <i class="devicon-java-plain colored"></i>
+                  <span>Java</span>
+                </div>
+                <div class="skill">
+                  <i class="devicon-python-plain colored"></i>
+                  <span>Python</span>
+                </div>
+                <div class="skill">
+                  <i class="devicon-javascript-plain colored"></i>
+                  <span>JavaScript</span>
+                </div>
+                <div class="skill">
+                  <i class="devicon-html5-plain colored"></i>
+                  <span>HTML5</span>
+                </div>
+                <div class="skill">
+                  <i class="devicon-css3-plain colored"></i>
+                  <span>CSS3</span>
+                </div>
+                <div class="skill">
+                    <i class="devicon-git-plain colored"></i>
+                    <span>Git</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <space></space>
+
+          <section id="work">
+            <h2 class="scramble" style="display: inline">My Work</h2>
+
             <p class="scramble">
-              Curious about what I've built or what I'm currently tinkering
-              with? Check out the
-              <a class="link" href="/projects">projects</a> page!
+              Here you can see a few projects I'm either still working on, or I've worked on.
             </p>
+
+            <div class="project-card">
+              <div class="project-icon-container"></div>
+              <picture>
+                <source type="image/webp" srcset="/assets/projects/effectmaster.webp"/>
+                <source type="image/png" srcset="/assets/projects/effectmaster.png"/>
+                <img class="project-icon" src="/assets/projects/effectmaster.png" alt="EffectMaster icon" draggable="false"/>
+              </picture>
+              <div class="project-desc-container">
+                <h3>EffectMaster - Minecraft Plugin</h3>
+                <p>My first decent and public Minecraft plugin. EffectMaster allows
+                  players to create beautiful shows, composed by a variety of
+                  different effects from the plugin itself.</p>
+                <div class="project-links">
+                  <a class="project-button" href="https://modrinth.com/plugin/effectmaster" target="_blank" rel="EffectMaster Download">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a class="project-button" href="https://github.com/Ym64/EffectMaster" target="_blank" rel="EffectMaster GitHub">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a class="project-button" href="https://effectmaster.m64.dev" target="_blank" rel="EffectMaster Wiki">
+                    <i class="fa-solid fa-book"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-icon-container"></div>
+              <picture>
+                <source type="image/webp" srcset="/assets/projects/amber.webp"/>
+                <source type="image/png" srcset="/assets/projects/amber.png"/>
+                <img class="project-icon" src="/assets/projects/amber.png" alt="Amber icon"
+                     draggable="false"/>
+              </picture>
+              <div class="project-desc-container">
+                <h3>Amber - Discord Bot</h3>
+                <p>A discord bot which helps as an assistant in my discord server. Written in Kotlin using JDA, it serves to support people, report spam and a lot more.</p>
+                <div class="project-links">
+                  <a class="project-button" href="https://github.com/Ym64/Amber" target="_blank"
+                     rel="EffectMaster GitHub">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-icon-container"></div>
+              <picture>
+                <source type="image/webp" srcset="/assets/projects/m64dev.webp"/>
+                <source type="image/png" srcset="/assets/projects/m64dev.png"/>
+                <img class="project-icon" src="/assets/projects/m64dev.png" alt="Amber icon"
+                     draggable="false"/>
+              </picture>
+              <div class="project-desc-container">
+                <h3>Portfolio - Website</h3>
+                <p>The single-page website you're viewing right now. Also includes a backend which handles my online status and the
+                  <a class="link" onclick="scrollToElement('contact')">Contact Me</a> section.
+                </p>
+                <div class="project-links">
+                  <a class="project-button" href="https://github.com/Ym64/M64Dev" target="_blank"
+                     rel="EffectMaster GitHub">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <space></space>
+
+          <section id="contact">
+            <h2 class="scramble" style="display: inline">Contact Me</h2>
+
             <p class="scramble">
-              Need a custom plugin or a unique project? I'm open for
-              commissions, so feel free to
-              <a class="link" href="/contact">reach out</a>. Let's make
-              something awesome together!
+              You can contact me through mail or through the form below. I will try to respond as soon as possible.
             </p>
-            <hr />
+
+            <div class="contact-container">
+              <form id="contact-form">
+
+                <div class="form-row">
+                  <label for="name">Name<span class="req-dot">*</span></label>
+
+                  <div class="input-container">
+                    <input onkeyup="setRemainingChars(this, 'remaining-chars-name', 64)" type="text" id="name" name="name" placeholder="Steve Alex" maxlength="50" required>
+                    <span class="remaining-chars" id="remaining-chars-name">64</span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="email">Email<span class="req-dot">*</span></label>
+                  <div class="input-container">
+                    <input onkeyup="setRemainingChars(this, 'remaining-chars-mail', 64)" type="email" id="email" name="email" placeholder="example@coolperson.me" maxlength="50" required>
+                    <span class="remaining-chars" id="remaining-chars-mail">64</span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="discord">Discord</label>
+                  <div class="input-container">
+                    <input onkeyup="setRemainingChars(this, 'remaining-chars-discord', 64)" type="text" id="discord" name="discord" placeholder="@coolperson123" maxlength="50">
+                    <span class="remaining-chars" id="remaining-chars-discord">64</span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label class="textarea-label" for="message">Message<span class="req-dot">*</span></label>
+                  <div class="input-container">
+                    <textarea onkeyup="setRemainingChars(this, 'remaining-chars-message', 2048)" id="message" name="message" placeholder="Lorem ipsum..." maxlength="2048" required></textarea>
+                    <span class="remaining-chars" id="remaining-chars-message">2048</span>
+                  </div>
+                </div>
+
+                <div class="form-row" style="margin-top: 20px;">
+                  <div></div>
+                  <div class="cf-turnstile" data-sitekey="0x4AAAAAAEwWjYH7F7G0jVHp" data-theme="dark"></div>
+                </div>
+
+                <div class="form-row">
+                  <div></div>
+                  <button class="primary" id="contact-submit" style="width: 170px">Submit</button>
+                </div>
+
+              </form>
+
+              <div id="contact-modal" style="visibility: hidden">
+                <h3 id="contact-modal-title">Modal title</h3>
+                <p id="contact-modal-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button id="contact-modal-close" class="primary" onclick="closeContactModal(this)">Close</button>
+              </div>
+
+
+            </div>
+
+            <div class="mail-container">
+              <a class="link" href="mailto:me@ymanu.dev"><u>me@ymanu.dev</u></a>
+              <button style="width: 170px;" class="secondary" onclick="copyEmail(this)"><i
+                      class="fa-solid fa-envelope"></i><span> Copy Email</span></button>
+            </div>
           </section>
         </div>
       </div>
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const elements = document.querySelectorAll(".scramble");
-        elements.forEach((element) => scrambleText(element, 800)); // Total duration of 0.8 seconds
 
-        function scrambleText(element, duration) {
-          const originalHtml = element.innerHTML; // Store original HTML to restore later
-          const textNodes = getTextNodes(element);
-
-          let iteration = 0;
-          const chars =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-          function update() {
-            let scrambledHtml = originalHtml;
-
-            // Scramble text nodes
-            textNodes.forEach((node) => {
-              const originalText = node.textContent;
-              const scrambledText = originalText
-                .split("")
-                .map((char, i) => {
-                  if (char === " ") return char; // Preserve spaces
-                  if (iteration >= (duration / 60 / originalText.length) * i)
-                    return char; // Reveal original characters progressively
-                  return chars[Math.floor(Math.random() * chars.length)];
-                })
-                .join("");
-
-              scrambledHtml = scrambledHtml.replace(
-                originalText,
-                scrambledText,
-              ); // Update only the text part
-            });
-
-            element.innerHTML = scrambledHtml; // Apply scrambled text
-
-            iteration++;
-
-            if (iteration < duration / 60) {
-              setTimeout(update, 60); // Update every 60ms for smoother animation
-            } else {
-              element.innerHTML = originalHtml; // Restore original HTML
-            }
-          }
-
-          update();
-        }
-
-        // Helper function to get all text nodes within an element
-        function getTextNodes(element) {
-          const textNodes = [];
-          function walk(node) {
-            if (node.nodeType === Node.TEXT_NODE) {
-              textNodes.push(node);
-            } else if (node.nodeType === Node.ELEMENT_NODE) {
-              node.childNodes.forEach(walk);
-            }
-          }
-          walk(element);
-          return textNodes;
-        }
-      });
     </script>
 
     <footer>
@@ -178,12 +300,14 @@
         <script>
           document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("year").innerHTML =
-              new Date().getFullYear();
+              new Date().getFullYear().toString();
           });
         </script>
         <span id="year"></span>
       </p>
     </footer>
-    <script defer src="script/index.js"></script>
+
+    <!-- Load own script after loading HTML -->
+    <script defer type="module" src="/script/index.js"></script>
   </body>
 </html>

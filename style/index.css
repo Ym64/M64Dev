@@ -6,6 +6,7 @@ html {
   scroll-behavior: smooth;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
+  font-family: "Noto Sans Mono", monospace;
 }
 
 body,
@@ -16,7 +17,7 @@ html {
 }
 
 body {
-  background: #131313;
+  background: #060606;
   color: #ddd;
   display: flex;
   flex-direction: column;
@@ -34,20 +35,32 @@ div {
 }
 
 #navbar {
-  padding: 30px 0;
+  position: fixed;
+  top: 0;
+  margin: 12px;
+  padding: 4px 8px;
   color: #ddd;
-  width: 100%;
+  border: 1px rgba(255 255 255 / 0.3) solid;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
 }
 
 #navbar .item {
-  font-weight: 800;
+  font-weight: 600;
   padding: 10px 0;
-  margin: 0 30px;
-  font-family: "Alegreya Sans SC", sans-serif;
-  font-size: 18px;
+  margin: 0 16px;
+  font-size: 14px;
   transition: 0.5s;
+}
+
+#navbar .item:hover {
+  cursor: pointer;
 }
 
 #navbar .item i {
@@ -57,6 +70,15 @@ div {
 #navbar .item.active {
   color: #fff;
   border-bottom: solid 2px #fff;
+}
+
+h2 {
+    margin-bottom: 6px;
+}
+
+.quote {
+  padding-left: 10px;
+  border-left: solid 2px #6600ff;
 }
 
 @media only screen and (max-width: 600px) {
@@ -84,76 +106,243 @@ div {
 
 .section-wrapper section {
   max-width: 600px;
-  padding: 10px;
+  padding: 20px;
 }
 
 .section-wrapper hr {
-  margin-top: 16px;
+  margin: 16px 0;
   border-style: dashed;
 }
 
+button.primary {
+  background-color: rgb(255 255 255 / 0.10);
+  color: #fff;
+  border: 1px #fff solid;
+  border-radius: 6px;
+  font-family: "Noto Sans Mono", monospace;
+  padding: 12px 24px;
+  transition: 0.25s;
+}
+
+button.primary:hover {
+  background-color: rgb(255 255 255 / 0.2);
+  cursor: pointer;
+}
+
+button.secondary {
+  background-color: rgb(255 255 255 / 0.05);
+  color: #fff;
+  border: 1px rgb(255 255 255 / 0.10) solid;
+  border-radius: 6px;
+  font-family: "Noto Sans Mono", monospace;
+  padding: 12px 24px;
+  transition: 0.25s;
+}
+
+button.secondary:hover {
+  background-color: rgb(255 255 255 / 0.2);
+  cursor: pointer;
+}
+
+button.copied {
+    background-color: rgb(61 255 0 / 0.2);
+    color: #fff;
+    border: 1px rgb(61 255 0 / 0.1) solid;
+    border-radius: 6px;
+    font-family: "Noto Sans Mono", monospace;
+    padding: 12px 24px;
+}
+
+button.copied:hover {
+  background-color: rgb(61 255 0 / 0.3);
+}
+
 .skills-container {
-  padding-top: 8px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 20px;
-  text-align: center;
+  border: 1px rgba(255 255 255 / 0.3) dashed;
+  border-radius: 6px;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -10%;
 }
 
 .skills {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 15px;
-  max-width: 600px; /* Ensures the icons don't stretch too wide */
+  max-width: 600px;
 }
 
 .skill {
-  font-size: clamp(16px, 4vw, 28px); /* Dynamic sizing for responsiveness */
-  transition: transform 0.1s ease-in-out;
-  cursor: pointer;
+  font-size: 18px;
+  /* cursor: pointer; */ /* Currently does nothing */
   padding: 2px;
+  border: 1px rgba(255 255 255 / 0.3) dashed;
+  border-radius: 6px;
+  background-color: rgba(255 255 255 / 0.05);
 }
 
-.skill:hover {
-  transform: scale(1.3);
-}
-
-/* Adjustments for smaller screens */
-@media only screen and (max-width: 600px) {
-  .skills {
-    gap: 10px;
-  }
-
-  .skill {
-    font-size: clamp(20px, 8vw, 35px);
-  }
-}
-
-#skill-text {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  font-size: 2.4rem;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.25);
-  cursor: default;
+/*
+ * Projects
+ */
+.project-card {
   display: flex;
-  flex-direction: column; /* Stacks name and stars */
-  align-items: center; /* Centers text and stars */
-  gap: 4px; /* Adds spacing between name and stars */
+  flex-direction: row;
+  flex: 1 5;
+  margin: 30px 0;
 }
 
-#skill-name {
-  font-size: 2.4rem;
-  font-weight: bold;
+.project-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 6px;
+  margin-right: 20px;
+  margin-top: 20px;
 }
 
-#skill-stars {
-  font-size: 2rem;
+.project-card:first-of-type {
+  margin-top: 0;
+}
+
+.project-card:last-of-type {
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  .project-icon {
+    display: none;
+  }
+}
+
+.project-desc-container h3 {
+  margin-bottom: 0;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project-button {
+  color: white;
+  margin: 0 10px;
+  border: none;
+  background: 0 0;
+  cursor: pointer;
+}
+
+.project-button:first-of-type {
+  margin-left: 0;
+}
+
+.project-button:last-of-type {
+  margin-right: 0;
+}
+
+
+.mail-container {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-container {
+  position: relative;
+  display: flex;
+  border: 1px rgba(255 255 255 / 0.3) dashed;
+  border-radius: 6px;
+  flex-direction: column;
+  padding: 12px 16px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.contact-container input {
+  width: 100%;
+  background-color: rgb(255 255 255 / 0.05);
+  color: #fff;
+  border: 1px rgb(255 255 255 / 0.10) solid;
+  border-radius: 6px;
+  font-family: "Noto Sans Mono", monospace;
+  padding: 12px 32px 12px 18px;
+  box-sizing: border-box;
+}
+
+.input-container {
+  width: 60%;
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.input-container textarea {
+  width: 100%;
+  height: 160px;
+  background-color: rgb(255 255 255 / 0.05);
+  color: #fff;
+  border: 1px rgb(255 255 255 / 0.10) solid;
+  border-radius: 6px;
+  font-family: "Noto Sans Mono", monospace;
+  padding: 12px 32px 12px 18px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.remaining-chars {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.75em;
+}
+
+.req-dot {
+  color: #ec8fa1;
+}
+
+#contact-modal {
+  position: absolute;
+  inset: 0 0 0 0;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  background-color: rgba(0 0 0 / 0.75);
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding: 10%;
+}
+
+@media only screen and (max-width: 550px) {
+  .form-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-container input {
+    margin-top: 4px;
+    width: 100%;
+  }
+
+  .input-container {
+    margin-top: 4px;
+    width: 100%;
+  }
 }
 
 #wrapper {
@@ -181,6 +370,10 @@ div {
   }
 }
 
+space {
+    height: 120px;
+}
+
 .link {
   color: #ddd;
   text-decoration: none;
@@ -192,6 +385,7 @@ div {
 
 .link:hover {
   color: #fff;
+  cursor: pointer;
 }
 
 footer {
