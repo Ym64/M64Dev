@@ -117,7 +117,7 @@ document.getElementById("contact-form").addEventListener("submit", async (event)
 
     console.log(data);
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     const contactForm = document.getElementById("contact-form");
     const contactSubmit = document.getElementById("contact-submit");
@@ -140,21 +140,26 @@ document.getElementById("contact-form").addEventListener("submit", async (event)
 
         clearTimeout(timeoutId);
         modalClose.style.transition = "0.25s";
+        modal.style.visibility = "visible";
 
         if (response.ok) {
-            modal.style.visibility = "visible";
             modalTitle.innerHTML = "<i class=\"fa-solid fa-check\"></i> Successfully sent";
             modalText.innerText = "Your message has been delivered by my magical pigeon. I'll get in touch as soon as possible!";
 
             contactForm.reset();
-        } else if (response.status === 429) {
-            modal.style.visibility = "visible";
-            modalTitle.innerHTML = "<i class=\"fa-solid fa-circle-exclamation\"></i> Too faaasstttt!";
-            modalText.innerText = "You've sent too many request already, please try again later.";
         } else {
-            modal.style.visibility = "visible";
-            modalTitle.innerHTML = "<i class=\"fa-solid fa-x\"></i> An error occurred!";
-            modalText.innerText = "Something went wrong... Please try again later!";
+            const body = await response.json();
+
+            if (response.status === 429) {
+                modalTitle.innerHTML = "<i class=\"fa-solid fa-circle-exclamation\"></i> Too faaasstttt!";
+                modalText.innerText = "You've sent too many request already, please try again later.";
+            } else if (response.status === 403 && body.error === "turnstile_failed") {
+                modalTitle.innerHTML = "<i class=\"fa-solid fa-circle-exclamation\"></i> You are a robot?!";
+                modalText.innerText = "Please verify your humanity before submitting this form.";
+            } else {
+                modalTitle.innerHTML = "<i class=\"fa-solid fa-x\"></i> An error occurred!";
+                modalText.innerText = "Something went wrong... Please try again later!";
+            }
         }
 
     } catch (e) {
