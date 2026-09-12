@@ -408,6 +408,16 @@ footer .link {
   border-bottom: none;
 }
 
+.footer-links {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.footer-button {
+  color: #777;
+}
+
 #online-status.offline {
   color: #404040 !important;
 }
